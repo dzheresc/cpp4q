@@ -1,0 +1,98 @@
+----------------------------------------------------------------------------
+Benchmark                                  Time             CPU   Iterations
+----------------------------------------------------------------------------
+BM_BlackScholesPrice                    31.2 ns         31.0 ns      9799662
+BM_BlackScholesGreeks                   39.8 ns         39.7 ns      6822227
+BM_PriceBufferCopy/64                   26.6 ns         26.3 ns     10592686 bytes_per_second=18.1054Gi/s
+BM_PriceBufferCopy/512                   170 ns          169 ns      2046975 bytes_per_second=22.5238Gi/s
+BM_PriceBufferCopy/4096                 1024 ns         1013 ns       307958 bytes_per_second=30.1113Gi/s
+BM_PriceBufferCopy/32768                7473 ns         7445 ns        33637 bytes_per_second=32.7916Gi/s
+BM_PriceBufferCopy/65536               15420 ns        15195 ns        16229 bytes_per_second=32.1347Gi/s
+BM_PriceBufferMove/64                   3.77 ns         3.76 ns     64351271
+BM_PriceBufferMove/512                  4.35 ns         4.27 ns     69015392
+BM_PriceBufferMove/4096                 3.96 ns         3.96 ns     62202811
+BM_PriceBufferMove/32768                3.32 ns         3.28 ns     89879714
+BM_PriceBufferMove/65536                4.42 ns         4.41 ns     83545183
+BM_VirtualPayoffs                      12141 ns        11895 ns        25282 items_per_second=344.352M/s
+BM_VariantPayoffs                       7094 ns         6782 ns        44024 items_per_second=603.934M/s
+BM_ConcreteCalls                        4705 ns         4698 ns        45967 items_per_second=871.772M/s
+BM_OrderBookUpdates                     48.9 ns         48.7 ns      6017223
+BM_PortfolioMarketValue/16               210 ns          210 ns      1353093 items_per_second=76.3455M/s
+BM_PortfolioMarketValue/64               825 ns          799 ns       378932 items_per_second=80.1151M/s
+BM_PortfolioMarketValue/512            10604 ns        10590 ns        22437 items_per_second=48.3487M/s
+BM_PortfolioMarketValue/4096           97193 ns        95192 ns         2576 items_per_second=43.0289M/s
+BM_RollingWindowPush/20                 9.82 ns         9.49 ns     29746975
+BM_RollingWindowPush/250                11.4 ns         11.4 ns     24142234
+BM_SimpleReturns/1024                    830 ns          828 ns       378078 items_per_second=1.23745G/s
+BM_SimpleReturns/4096                   3371 ns         3370 ns        86066 items_per_second=1.21532G/s
+BM_SimpleReturns/32768                 33337 ns        33322 ns         8397 items_per_second=983.369M/s
+BM_SimpleReturns/262144               296951 ns       296894 ns          986 items_per_second=882.955M/s
+BM_SimpleReturns/1048576             1097668 ns      1080872 ns          241 items_per_second=970.12M/s
+BM_SampleVariance/1024                   769 ns          761 ns       468696 items_per_second=1.34578G/s
+BM_SampleVariance/4096                  3817 ns         3815 ns        71036 items_per_second=1.07357G/s
+BM_SampleVariance/32768                30635 ns        30629 ns         9170 items_per_second=1.06983G/s
+BM_SampleVariance/262144              263069 ns       262937 ns         1064 items_per_second=996.982M/s
+BM_SampleVariance/1048576            1056176 ns      1056178 ns          267 items_per_second=992.802M/s
+BM_MovingAverage/20                   578638 ns       577846 ns          411 items_per_second=173.056M/s
+BM_MovingAverage/200                 3719528 ns      3717375 ns           81 items_per_second=26.9007M/s
+BM_MovingAverage/2000               59805146 ns     59792061 ns            5 items_per_second=1.67246M/s
+BM_MaxDrawdown/1024                     3005 ns         3004 ns        97272 items_per_second=340.828M/s
+BM_MaxDrawdown/4096                    11107 ns        11107 ns        25274 items_per_second=368.776M/s
+BM_MaxDrawdown/32768                   88815 ns        88816 ns         3014 items_per_second=368.943M/s
+BM_MaxDrawdown/262144                 751912 ns       751770 ns          376 items_per_second=348.702M/s
+BM_MaxDrawdown/1048576               3212457 ns      3212351 ns           84 items_per_second=326.42M/s
+BM_HistoricalVar/1024                    816 ns          816 ns       337399 items_per_second=1.25545G/s
+BM_HistoricalVar/4096                   4834 ns         4823 ns        60028 items_per_second=849.334M/s
+BM_HistoricalVar/32768                 76888 ns        76889 ns         3618 items_per_second=426.175M/s
+BM_HistoricalVar/262144              1026666 ns      1026443 ns          272 items_per_second=255.391M/s
+BM_HistoricalVar/1048576             6669266 ns      6644910 ns           44 items_per_second=157.801M/s
+BM_EuropeanMc                           4.61 ms         4.59 ms           48 items_per_second=21.808M/s
+BM_EuropeanMcParallel/1/real_time       47.7 ms        0.102 ms            6 items_per_second=20.9698M/s
+BM_EuropeanMcParallel/2/real_time       32.2 ms        0.132 ms            9 items_per_second=31.1022M/s
+BM_EuropeanMcParallel/4/real_time       19.1 ms        0.169 ms           11 items_per_second=52.3541M/s
+BM_AsianMc                              45.7 ms         44.2 ms            7 items_per_second=23.535M/s
+BM_AsianMcParallel/1/real_time           240 ms        0.120 ms            1 items_per_second=21.671M/s
+BM_AsianMcParallel/2/real_time           127 ms        0.101 ms            2 items_per_second=41.1028M/s
+BM_AsianMcParallel/4/real_time          70.0 ms        0.141 ms            3 items_per_second=74.2566M/s
+BM_GenerateSchedule                     2628 ns         2579 ns       160680
+BM_YearFraction/0                       14.6 ns         14.6 ns     16357681
+BM_YearFraction/1                       10.1 ns         9.67 ns     21632736
+BM_YearFraction/2                       8.10 ns         7.98 ns     40277757
+BM_YearFraction/3                       11.9 ns         11.9 ns     22640872
+BM_YearFraction/4                       30.3 ns         30.2 ns      8433014
+BM_BondRisk                             1626 ns         1625 ns       183351
+BM_BondYield                            7215 ns         7202 ns        32139
+BM_MultiplyNaive/64                    0.127 ms        0.126 ms         2018 GFLOP/s=4.15736/s
+BM_MultiplyNaive/128                    2.62 ms         2.61 ms           98 GFLOP/s=1.60913/s
+BM_MultiplyNaive/256                    20.7 ms         20.0 ms           14 GFLOP/s=1.67914/s
+BM_MultiplyNaive/512                     347 ms          346 ms            1 GFLOP/s=0.776233/s
+BM_Multiply/64                         0.145 ms        0.142 ms         2131 GFLOP/s=3.70074/s
+BM_Multiply/128                         2.53 ms         2.52 ms          114 GFLOP/s=1.66197/s
+BM_Multiply/256                         21.7 ms         21.7 ms           14 GFLOP/s=1.54694/s
+BM_Multiply/512                          367 ms          367 ms            1 GFLOP/s=0.731778/s
+BM_MultiplyValarray/64                 0.507 ms        0.507 ms          561 GFLOP/s=1.0344/s
+BM_MultiplyValarray/128                 4.21 ms         4.21 ms           64 GFLOP/s=0.996398/s
+BM_MultiplyValarray/256                 32.9 ms         32.9 ms            9 GFLOP/s=1.02092/s
+BM_Cholesky/32                          2.88 us         2.88 us        98770
+BM_Cholesky/64                          19.2 us         19.2 us        14490
+BM_Cholesky/128                          152 us          152 us         1823
+BM_Cholesky/256                         1283 us         1282 us          216
+BM_Cholesky/512                        12230 us        12228 us           23
+BM_LuSolve/32                           4.72 us         4.71 us        61293
+BM_LuSolve/64                           26.8 us         26.8 us        10604
+BM_LuSolve/128                           276 us          276 us         1321
+BM_LuSolve/256                          1952 us         1930 us          117
+BM_LuSolve/512                         15628 us        15225 us           15
+BM_Binomial/European/128                10.1 us         10.1 us        36185 items_per_second=814.885M/s
+BM_Binomial/European/256                21.8 us         21.5 us        13892 items_per_second=1.52522G/s
+BM_Binomial/European/1024                240 us          232 us         1307 items_per_second=2.25893G/s
+BM_Binomial/European/2048               1461 us         1458 us          224 items_per_second=1.43801G/s
+BM_Binomial/American/128                 267 us          266 us         1344 items_per_second=30.8431M/s
+BM_Binomial/American/256                 905 us          903 us          308 items_per_second=36.287M/s
+BM_Binomial/American/1024              17344 us        17335 us           19 items_per_second=30.2439M/s
+BM_Binomial/American/2048              57613 us        57389 us            4 items_per_second=36.5425M/s
+BM_BinomialVirtualPayoff/2048          63918 us        61315 us            5
+BM_BlackScholesBoost                    70.5 ns         67.8 ns      4075011
+BM_ImpliedVolToms748                     935 ns          935 ns       298813
+BM_ImpliedVolNewton                      851 ns          851 ns       327631
+BM_PriceByQuadrature                    2231 ns         2189 ns       102977
