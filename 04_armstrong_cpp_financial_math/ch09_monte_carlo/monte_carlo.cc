@@ -27,9 +27,16 @@ void PathGenerator::Generate(Rng& rng, std::span<double> path) {
   if (path.size() != static_cast<std::size_t>(n_steps_)) {
     throw std::invalid_argument("path size must equal n_steps");
   }
+  // Two passes: draw every normal first, then accumulate and
+  // exponentiate. Fusing them into one loop was measured 25-50% slower
+  // (fewer instructions, but the polar method's rejection branch then
+  // sits on the log S dependency chain).
+  for (double& z : path) z = normal_(rng);
+  const double drift = step_drift_;
+  const double sd = step_sd_;
   double log_s = log_s0_;
   for (double& s : path) {
-    log_s += step_drift_ + step_sd_ * normal_(rng);
+    log_s += drift + sd * s;
     s = std::exp(log_s);
   }
 }
