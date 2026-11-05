@@ -39,3 +39,12 @@ else()
 endif()
 
 find_package(Threads REQUIRED)
+
+# oneTBB is the backend libstdc++ uses for std::execution::par/par_unseq
+# (book 2, chapter 10). Without it those policies run serially.
+find_package(TBB CONFIG QUIET)
+if(TBB_FOUND)
+  message(STATUS "oneTBB ${TBB_VERSION} found: parallel STL policies enabled")
+else()
+  message(STATUS "oneTBB not found: parallel STL policies run serially")
+endif()
