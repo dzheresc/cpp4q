@@ -1,0 +1,82 @@
+== memcheck
+  ok    armstrong_appendix_a_risk_neutral_test
+  ok    armstrong_ch01_getting_started_test
+  ok    armstrong_ch02_data_types_test
+  ok    armstrong_ch03_functions_test
+  ok    armstrong_ch04_flow_of_control_test
+  ok    armstrong_ch05_multiple_files_test
+  ok    armstrong_ch06_unit_testing_test
+  ok    armstrong_ch07_using_classes_test
+  ok    armstrong_ch08_user_defined_types_test
+  ok    armstrong_ch09_monte_carlo_test
+  ok    armstrong_ch10_interfaces_test
+  ok    armstrong_ch11_arrays_strings_pointers_test
+  ok    armstrong_ch12_sophisticated_classes_test
+  ok    armstrong_ch13_portfolio_test
+  ok    armstrong_ch14_delta_hedging_test
+  ok    armstrong_ch15_debugging_tools_test
+  ok    armstrong_ch16_matrix_test
+  ok    armstrong_ch17_templates_test
+  ok    armstrong_ch18_stl_test
+  ok    armstrong_ch19_function_objects_test
+  ok    armstrong_ch20_threads_test
+  ok    armstrong_ch21_next_steps_test
+  ok    armstrong_appendix_a_risk_neutral_demo
+  ok    armstrong_ch01_getting_started_demo
+  ok    armstrong_ch02_data_types_demo
+  ok    armstrong_ch03_functions_demo
+  ok    armstrong_ch04_flow_of_control_demo
+  ok    armstrong_ch05_multiple_files_demo
+  ok    armstrong_ch06_unit_testing_demo
+  ok    armstrong_ch07_using_classes_demo
+  ok    armstrong_ch08_user_defined_types_demo
+  ok    armstrong_ch09_monte_carlo_demo
+  ok    armstrong_ch10_interfaces_demo
+  ok    armstrong_ch11_arrays_strings_pointers_demo
+  ok    armstrong_ch12_sophisticated_classes_demo
+  ok    armstrong_ch13_portfolio_demo
+  ok    armstrong_ch14_delta_hedging_demo
+  ok    armstrong_ch15_debugging_tools_demo
+  ok    armstrong_ch16_matrix_demo
+  ok    armstrong_ch17_templates_demo
+  ok    armstrong_ch18_stl_demo
+  ok    armstrong_ch19_function_objects_demo
+  ok    armstrong_ch20_threads_demo
+  ok    armstrong_ch21_next_steps_demo
+== helgrind
+  parallel    0 errors
+== drd
+  parallel    0 errors
+== callgrind
+  normals                82342275 Ir
+  mc09                   28120170 Ir
+  asian                 111218161 Ir
+  barrier               113046473 Ir
+  hedging                45248039 Ir
+  portfolio              23777392 Ir
+  matmul                 71903466 Ir
+  linalg                 25256889 Ir
+  basket                 56841665 Ir
+  callables              66082109 Ir
+  impliedvol              8946832 Ir
+  parallel              208514049 Ir
+  var                    94918191 Ir
+  pde_eu                  7453108 Ir
+  pde_am                  3425332 Ir
+  crr                    14269432 Ir
+== cachegrind
+  matmul: ==17592== D1  miss rate:        4.0% (       5.8%     +       0.3%  )
+  matmul: ==17592== LL miss rate:         0.0% (       0.0%     +       0.2%  )
+  linalg: ==17595== D1  miss rate:        3.7% (      5.3%     +       0.6%  )
+  linalg: ==17595== LL miss rate:         0.1% (      0.0%     +       0.3%  )
+  pde_eu: ==17598== D1  miss rate:       0.8% (      0.9%     +     0.4%  )
+  pde_eu: ==17598== LL miss rate:        0.1% (      0.1%     +     0.3%  )
+  asian: ==17601== D1  miss rate:         0.0% (       0.1%     +       0.0%  )
+  asian: ==17601== LL miss rate:          0.0% (       0.0%     +       0.0%  )
+== massif
+  mc09       peak heap: 77824 bytes
+  asian      peak heap: 77824 bytes
+  hedging    peak heap: 82528 bytes
+  var        peak heap: 3273728 bytes
+  pde_am     peak heap: 99280 bytes
+rc=0

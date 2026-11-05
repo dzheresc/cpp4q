@@ -11,6 +11,7 @@ Each book has its own top-level folder, and they all build from the root `CMakeL
 | [`01_hanson_modern_cpp_finance/`](01_hanson_modern_cpp_finance/) | Hanson, *Learning Modern C++ for Finance* | all 10 chapters + appendices, tests, benchmarks, [profiling report](01_hanson_modern_cpp_finance/profiling/REPORT.md) |
 | [`02_williams_cpp_concurrency/`](02_williams_cpp_concurrency/) | Williams, *C++ Concurrency in Action* | all 11 chapters + appendix C, tests, benchmarks, ThreadSanitizer, [profiling report](02_williams_cpp_concurrency/profiling/REPORT.md) |
 | [`03_glasserman_monte_carlo/`](03_glasserman_monte_carlo/) | Glasserman, *Monte Carlo Methods in Financial Engineering* | all 9 chapters, tests against closed forms, benchmarks, valgrind + ASan/UBSan/TSan, [profiling report](03_glasserman_monte_carlo/profiling/REPORT.md) |
+| [`04_armstrong_cpp_financial_math/`](04_armstrong_cpp_financial_math/) | Armstrong, *C++ for Financial Mathematics* | all 21 chapters + appendix A, tests against closed forms, benchmarks, valgrind + ASan/UBSan/TSan, [profiling report](04_armstrong_cpp_financial_math/profiling/REPORT.md) |
 
 ```sh
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && cmake --build build && ctest --test-dir build

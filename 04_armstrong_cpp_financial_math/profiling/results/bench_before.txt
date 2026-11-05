@@ -1,0 +1,47 @@
+Run on (4 X 2800 MHz CPU s)
+CPU Caches:
+Benchmark                                    Time             CPU   Iterations UserCounters...
+BM_NormCdf_median                        68535 ns        67867 ns            3 items_per_second=60.3532M/s
+BM_NormCdfPolynomial_median              40684 ns        40351 ns            3 items_per_second=101.51M/s
+BM_NormInv_median                       138117 ns       136856 ns            3 items_per_second=29.9293M/s
+BM_BlackScholesCall_median              224966 ns       222006 ns            3 items_per_second=18.4499M/s
+BM_NaiveSum_median                       81707 ns        80851 ns            3 items_per_second=810.577M/s
+BM_CompensatedSum_median                116499 ns       115973 ns            3 items_per_second=565.098M/s
+BM_RandN_median                          91758 ns        89340 ns            3 items_per_second=45.8475M/s
+BM_Prctile/4096_median                  172117 ns       167317 ns            3 items_per_second=24.4804M/s
+BM_Prctile/262144_median              19259861 ns     19217232 ns            3 items_per_second=13.6411M/s
+BM_Ch09CallMc_median                      5.94 ms         5.88 ms            3 items_per_second=8.50369M/s
+BM_Ch10CallMc_median                      5.85 ms         5.81 ms            3 items_per_second=8.60863M/s
+BM_AsianMc/12_median                      5.39 ms         5.32 ms            3 items_per_second=28.1896M/s
+BM_AsianMc/52_median                      20.6 ms         20.3 ms            3 items_per_second=32.0515M/s
+BM_AsianMc/252_median                     94.5 ms         92.1 ms            3 items_per_second=34.2042M/s
+BM_BarrierMc_median                       21.1 ms         20.5 ms            3 items_per_second=31.7622M/s
+BM_PriceByIntegration_median              70.5 us         69.3 us            3
+BM_PortfolioGreeks_median                 33.5 us         33.0 us            3
+BM_DeltaHedging/52_median                 3.33 ms         3.28 ms            3 items_per_second=15.8439M/s
+BM_DeltaHedging/252_median                14.9 ms         14.8 ms            3 items_per_second=16.9796M/s
+BM_MatrixMultiply/64_median                219 us          216 us            3 items_per_second=1.21643G/s
+BM_MatrixMultiply/256_median             19138 us        18965 us            3 items_per_second=884.641M/s
+BM_Cholesky/64_median                     42.1 us         41.4 us            3
+BM_Cholesky/256_median                    3800 us         3775 us            3
+BM_Solve/64_median                        76.4 us         75.8 us            3
+BM_Solve/256_median                      16844 us        16571 us            3
+BM_FixedMatrix4x4_median                  18.7 ns         18.5 ns            3
+BM_DynamicMatrix4x4_median                69.6 ns         68.3 ns            3
+BM_BasketMc/2_median                      1.41 ms         1.38 ms            3 items_per_second=7.24913M/s
+BM_BasketMc/20_median                     8.26 ms         8.09 ms            3 items_per_second=1.23579M/s
+BM_IntegrateFunctionPointer_median      486764 ns       479191 ns            3 items_per_second=136.764M/s
+BM_IntegrateVirtual_median              516811 ns       504255 ns            3 items_per_second=129.966M/s
+BM_IntegrateStdFunction_median          621296 ns       612545 ns            3 items_per_second=106.99M/s
+BM_IntegrateTemplateLambda_median       487306 ns       478096 ns            3 items_per_second=137.077M/s
+BM_ImpliedVolatility_median              26388 ns        26140 ns            3 items_per_second=2.44838M/s
+BM_ParallelAsian/1/real_time_median       51.8 ms        0.127 ms            3 items_per_second=1.93168M/s
+BM_ParallelAsian/2/real_time_median       24.9 ms        0.145 ms            3 items_per_second=4.01382M/s
+BM_ParallelAsian/4/real_time_median       13.5 ms        0.167 ms            3 items_per_second=7.39235M/s
+BM_HistoricalVaR_median                   2498 us         2449 us            3 items_per_second=107.056M/s
+BM_PdeEuropean/200_median                0.450 ms        0.444 ms            3
+BM_PdeEuropean/800_median                 7.46 ms         7.29 ms            3
+BM_PdeAmerican/200_median                 5.97 ms         5.92 ms            3
+BM_PdeAmerican/800_median                  133 ms          131 ms            3
+BM_CrrAmerican/500_median                 2.58 ms         2.58 ms            3
+BM_CrrAmerican/2000_median                37.2 ms         36.8 ms            3
