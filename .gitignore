@@ -5,3 +5,5 @@ callgrind.out.*
 cachegrind.out.*
 massif.out.*
 01_hanson_modern_cpp_finance/profiling/results/valgrind/
+02_williams_cpp_concurrency/profiling/results/valgrind/
+02_williams_cpp_concurrency/profiling/results/tsan/

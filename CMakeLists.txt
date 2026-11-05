@@ -16,6 +16,13 @@ option(CPP4Q_BUILD_BENCHMARKS "Build benchmarks (Google Benchmark)" ON)
 option(CPP4Q_ENABLE_MODULES
        "Build C++20 named-module examples (needs Ninja + clang>=17/gcc>=14)" OFF)
 
+set(CPP4Q_SANITIZE "" CACHE STRING
+    "Build everything with -fsanitize=<value> (e.g. thread, address,undefined)")
+if(CPP4Q_SANITIZE)
+  add_compile_options(-fsanitize=${CPP4Q_SANITIZE} -fno-omit-frame-pointer)
+  add_link_options(-fsanitize=${CPP4Q_SANITIZE})
+endif()
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(Cpp4qDependencies)
 include(Cpp4qWarnings)
@@ -25,3 +32,4 @@ if(CPP4Q_BUILD_TESTS)
 endif()
 
 add_subdirectory(01_hanson_modern_cpp_finance)
+add_subdirectory(02_williams_cpp_concurrency)

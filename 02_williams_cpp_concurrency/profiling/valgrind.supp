@@ -1,0 +1,14 @@
+# oneTBB keeps its worker threads alive until process exit and never joins
+# them, so each worker's thread-local storage block shows up as "possibly
+# lost". It is owned by a running thread, not leaked.
+{
+   tbb_worker_thread_tls
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   ...
+   fun:_dl_allocate_tls
+   ...
+   fun:pthread_create*
+   obj:*libtbb.so*
+}

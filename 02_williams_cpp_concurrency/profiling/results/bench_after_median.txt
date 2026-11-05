@@ -1,0 +1,109 @@
+2026-11-05T11:59:04+00:00
+Running build/02_williams_cpp_concurrency/bench/williams_bench
+Run on (4 X 2100 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x4)
+  L1 Instruction 32 KiB (x4)
+  L2 Unified 2048 KiB (x4)
+  L3 Unified 266240 KiB (x1)
+Load Average: 1.20, 1.20, 1.15
+***WARNING*** Library was built as DEBUG. Timings may be affected.
+------------------------------------------------------------------------------------------------------------------------
+Benchmark                                                              Time             CPU   Iterations UserCounters...
+------------------------------------------------------------------------------------------------------------------------
+BM_TransferContended/real_time/threads:1_mean                       42.8 ns         42.5 ns            5 items_per_second=23.4343M/s
+BM_TransferContended/real_time/threads:1_median                     43.8 ns         43.8 ns            5 items_per_second=22.8199M/s
+BM_TransferContended/real_time/threads:1_stddev                     2.78 ns         3.16 ns            5 items_per_second=1.59153M/s
+BM_TransferContended/real_time/threads:1_cv                         6.48 %          7.46 %             5 items_per_second=6.79%
+BM_TransferContended/real_time/threads:2_mean                        164 ns          240 ns            5 items_per_second=6.14943M/s
+BM_TransferContended/real_time/threads:2_median                      168 ns          247 ns            5 items_per_second=5.9376M/s
+BM_TransferContended/real_time/threads:2_stddev                     14.3 ns         19.1 ns            5 items_per_second=586.416k/s
+BM_TransferContended/real_time/threads:2_cv                         8.75 %          7.94 %             5 items_per_second=9.54%
+BM_TransferContended/real_time/threads:4_mean                        187 ns          361 ns            5 items_per_second=5.36207M/s
+BM_TransferContended/real_time/threads:4_median                      184 ns          351 ns            5 items_per_second=5.44386M/s
+BM_TransferContended/real_time/threads:4_stddev                     12.2 ns         25.3 ns            5 items_per_second=338.221k/s
+BM_TransferContended/real_time/threads:4_cv                         6.51 %          7.02 %             5 items_per_second=6.31%
+BM_StdSort/1048576/real_time_mean                                    109 ms          108 ms            5
+BM_StdSort/1048576/real_time_median                                  104 ms          104 ms            5
+BM_StdSort/1048576/real_time_stddev                                 11.1 ms         10.6 ms            5
+BM_StdSort/1048576/real_time_cv                                    10.21 %          9.83 %             5
+BM_LockstepMeanSpot/1/real_time_mean                                 205 ms        0.176 ms            5
+BM_LockstepMeanSpot/1/real_time_median                               196 ms        0.169 ms            5
+BM_LockstepMeanSpot/1/real_time_stddev                              16.3 ms        0.014 ms            5
+BM_LockstepMeanSpot/1/real_time_cv                                  7.95 %          7.90 %             5
+BM_LockstepMeanSpot/2/real_time_mean                                 119 ms        0.194 ms            5
+BM_LockstepMeanSpot/2/real_time_median                               115 ms        0.209 ms            5
+BM_LockstepMeanSpot/2/real_time_stddev                              13.3 ms        0.027 ms            5
+BM_LockstepMeanSpot/2/real_time_cv                                 11.20 %         13.89 %             5
+BM_LockstepMeanSpot/4/real_time_mean                                72.7 ms        0.220 ms            5
+BM_LockstepMeanSpot/4/real_time_median                              76.3 ms        0.227 ms            5
+BM_LockstepMeanSpot/4/real_time_stddev                              8.10 ms        0.031 ms            5
+BM_LockstepMeanSpot/4/real_time_cv                                 11.15 %         13.96 %             5
+BM_LockedIncrement<std::mutex>/real_time/threads:1_mean             21.5 ns         21.2 ns            5 items_per_second=46.6116M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:1_median           21.3 ns         21.2 ns            5 items_per_second=46.9946M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:1_stddev          0.574 ns        0.638 ns            5 items_per_second=1.24373M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:1_cv               2.68 %          3.01 %             5 items_per_second=2.67%
+BM_LockedIncrement<std::mutex>/real_time/threads:2_mean             78.6 ns          152 ns            5 items_per_second=12.8015M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:2_median           77.4 ns          149 ns            5 items_per_second=12.9192M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:2_stddev           6.91 ns         15.3 ns            5 items_per_second=1.07525M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:2_cv               8.79 %         10.02 %             5 items_per_second=8.40%
+BM_LockedIncrement<std::mutex>/real_time/threads:4_mean             73.4 ns          240 ns            5 items_per_second=13.6805M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:4_median           74.2 ns          245 ns            5 items_per_second=13.4778M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:4_stddev           5.65 ns         20.2 ns            5 items_per_second=1.05033M/s
+BM_LockedIncrement<std::mutex>/real_time/threads:4_cv               7.69 %          8.42 %             5 items_per_second=7.68%
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:1_mean         17.8 ns         17.4 ns            5 items_per_second=56.0988M/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:1_median       17.9 ns         17.5 ns            5 items_per_second=55.7701M/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:1_stddev      0.281 ns        0.482 ns            5 items_per_second=897.739k/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:1_cv           1.58 %          2.76 %             5 items_per_second=1.60%
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:2_mean         82.4 ns          162 ns            5 items_per_second=12.1671M/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:2_median       80.4 ns          157 ns            5 items_per_second=12.4408M/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:2_stddev       4.97 ns         10.0 ns            5 items_per_second=680.355k/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:2_cv           6.03 %          6.21 %             5 items_per_second=5.59%
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:4_mean          136 ns          532 ns            5 items_per_second=7.34319M/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:4_median        136 ns          537 ns            5 items_per_second=7.35123M/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:4_stddev       3.29 ns         18.6 ns            5 items_per_second=176.099k/s
+BM_LockedIncrement<ch05::SpinLock>/real_time/threads:4_cv           2.42 %          3.49 %             5 items_per_second=2.40%
+BM_HistogramSerial/real_time_mean                                   10.9 ms         10.9 ms            5
+BM_HistogramSerial/real_time_median                                 11.5 ms         11.4 ms            5
+BM_HistogramSerial/real_time_stddev                                 1.50 ms         1.49 ms            5
+BM_HistogramSerial/real_time_cv                                    13.79 %         13.75 %             5
+BM_HistogramParallel/1/real_time_mean                               10.2 ms        0.054 ms            5
+BM_HistogramParallel/1/real_time_median                             10.2 ms        0.054 ms            5
+BM_HistogramParallel/1/real_time_stddev                            0.138 ms        0.004 ms            5
+BM_HistogramParallel/1/real_time_cv                                 1.35 %          6.84 %             5
+BM_HistogramParallel/2/real_time_mean                               5.56 ms        0.078 ms            5
+BM_HistogramParallel/2/real_time_median                             5.54 ms        0.078 ms            5
+BM_HistogramParallel/2/real_time_stddev                            0.403 ms        0.004 ms            5
+BM_HistogramParallel/2/real_time_cv                                 7.26 %          4.57 %             5
+BM_HistogramParallel/4/real_time_mean                               3.30 ms        0.104 ms            5
+BM_HistogramParallel/4/real_time_median                             3.25 ms        0.102 ms            5
+BM_HistogramParallel/4/real_time_stddev                            0.336 ms        0.007 ms            5
+BM_HistogramParallel/4/real_time_cv                                10.19 %          6.43 %             5
+BM_HandOff_MutexCvQueue/1/real_time_mean                            64.5 ms        0.119 ms            5 items_per_second=4.08166M/s
+BM_HandOff_MutexCvQueue/1/real_time_median                          62.9 ms        0.114 ms            5 items_per_second=4.16842M/s
+BM_HandOff_MutexCvQueue/1/real_time_stddev                          4.46 ms        0.017 ms            5 items_per_second=274.416k/s
+BM_HandOff_MutexCvQueue/1/real_time_cv                              6.92 %         14.18 %             5 items_per_second=6.72%
+BM_HandOff_MutexCvQueue/2/real_time_mean                             117 ms        0.140 ms            5 items_per_second=2.42681M/s
+BM_HandOff_MutexCvQueue/2/real_time_median                           129 ms        0.135 ms            5 items_per_second=2.03378M/s
+BM_HandOff_MutexCvQueue/2/real_time_stddev                          35.0 ms        0.010 ms            5 items_per_second=791.264k/s
+BM_HandOff_MutexCvQueue/2/real_time_cv                             29.89 %          7.42 %             5 items_per_second=32.61%
+BM_HandOff_TwoLockQueue/1/real_time_mean                             136 ms        0.120 ms            5 items_per_second=1.93592M/s
+BM_HandOff_TwoLockQueue/1/real_time_median                           133 ms        0.127 ms            5 items_per_second=1.96814M/s
+BM_HandOff_TwoLockQueue/1/real_time_stddev                          11.4 ms        0.015 ms            5 items_per_second=163.898k/s
+BM_HandOff_TwoLockQueue/1/real_time_cv                              8.35 %         12.61 %             5 items_per_second=8.47%
+BM_HandOff_TwoLockQueue/2/real_time_mean                             100 ms        0.168 ms            5 items_per_second=2.62458M/s
+BM_HandOff_TwoLockQueue/2/real_time_median                          98.2 ms        0.170 ms            5 items_per_second=2.6699M/s
+BM_HandOff_TwoLockQueue/2/real_time_stddev                          7.10 ms        0.014 ms            5 items_per_second=175.935k/s
+BM_HandOff_TwoLockQueue/2/real_time_cv                              7.09 %          8.40 %             5 items_per_second=6.70%
+BM_FindSerial/real_time_mean                                        5.04 ms         4.94 ms            5
+BM_FindSerial/real_time_median                                      4.66 ms         4.64 ms            5
+BM_FindSerial/real_time_stddev                                      1.37 ms         1.23 ms            5
+BM_FindSerial/real_time_cv                                         27.23 %         24.99 %             5
+BM_ScanSerial/real_time_mean                                        14.9 ms         14.8 ms            5
+BM_ScanSerial/real_time_median                                      14.6 ms         14.6 ms            5
+BM_ScanSerial/real_time_stddev                                      1.11 ms         1.15 ms            5
+BM_ScanSerial/real_time_cv                                          7.42 %          7.74 %             5
+BM_PoolSubmit10k/real_time_mean                                     19.0 ms         13.3 ms            5 items_per_second=532.199k/s
+BM_PoolSubmit10k/real_time_median                                   19.1 ms         13.5 ms            5 items_per_second=523.582k/s
+BM_PoolSubmit10k/real_time_stddev                                   1.98 ms         1.54 ms            5 items_per_second=59.8109k/s
+BM_PoolSubmit10k/real_time_cv                                      10.45 %         11.58 %             5 items_per_second=11.24%
