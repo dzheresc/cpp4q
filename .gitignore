@@ -11,3 +11,5 @@ massif.out.*
 03_glasserman_monte_carlo/profiling/results/sanitizers/
 04_armstrong_cpp_financial_math/profiling/results/valgrind/
 04_armstrong_cpp_financial_math/profiling/results/sanitizers/
+05_joshi_design_patterns_pricing/profiling/results/valgrind/
+05_joshi_design_patterns_pricing/profiling/results/sanitizers/

@@ -1,0 +1,46 @@
+Running ./build/05_joshi_design_patterns_pricing/bench/joshi_bench
+Run on (4 X 2800 MHz CPU s)
+CPU Caches:
+------------------------------------------------------------------------------------------------------------------
+Benchmark                                                        Time             CPU   Iterations UserCounters...
+------------------------------------------------------------------------------------------------------------------
+BM_Gaussian<&j::ch01::GetOneGaussianBySummation>_median       46.2 ns         45.5 ns            5 items_per_second=21.9722M/s
+BM_Gaussian<&j::ch01::GetOneGaussianByBoxMuller>_median       53.3 ns         53.3 ns            5 items_per_second=18.7787M/s
+BM_Gaussian<&j::ch01::GetOneGaussianByPolar>_median           34.8 ns         34.4 ns            5 items_per_second=29.0701M/s
+BM_InverseCumulativeNormal_median                             12.7 ns         12.5 ns            5 items_per_second=79.9637M/s
+BM_InverseCumulativeNormalRefined_median                      43.6 ns         41.7 ns            5 items_per_second=23.9745M/s
+BM_SimpleMonteCarlo1_median                                   6.00 ms         5.95 ms            5 items_per_second=16.801M/s
+BM_SimpleMonteCarlo5_median                                   7.60 ms         7.60 ms            5 items_per_second=13.1661M/s
+BM_ConvergenceTable_median                                    6.37 ms         6.36 ms            5 items_per_second=15.725M/s
+BM_Mc6ParkMiller_median                                       4.15 ms         4.09 ms            5 items_per_second=24.4317M/s
+BM_Mc6AntiThetic_median                                       4.05 ms         4.04 ms            5 items_per_second=24.74M/s
+BM_Mc6Halton_median                                           3.35 ms         3.32 ms            5 items_per_second=30.097M/s
+BM_Mc6Mt19937_median                                          4.23 ms         4.21 ms            5 items_per_second=23.7268M/s
+BM_ParkMillerSkip/1_median                                   0.059 us        0.059 us            5 items_per_second=170.492G/s
+BM_ParkMillerSkip/52_median                                  0.089 us        0.089 us            5 items_per_second=5.85291T/s
+BM_ExoticAsian/12_median                                      3.04 ms         2.98 ms            5 items_per_second=40.2412M/s
+BM_ExoticAsian/52_median                                      12.7 ms         12.3 ms            5 items_per_second=42.2244M/s
+BM_ExoticAsian/252_median                                     64.4 ms         63.3 ms            5 items_per_second=39.8011M/s
+BM_ExoticKnockOut/52_median                                   14.6 ms         14.6 ms            5 items_per_second=35.7013M/s
+BM_TreeEuropean/100_median                                    7.83 us         7.78 us            5
+BM_TreeEuropean/500_median                                     110 us          110 us            5
+BM_TreeEuropean/2000_median                                   1487 us         1466 us            5
+BM_TreeAmerican/100_median                                    14.3 us         14.2 us            5
+BM_TreeAmerican/500_median                                     246 us          245 us            5
+BM_TreeAmerican/2000_median                                   2753 us         2711 us            5
+BM_TreeAmericanReprice_median                                 2741 us         2691 us            5
+BM_ImpliedVolNewton_median                                     465 ns          465 ns            5
+BM_ImpliedVolBisection_median                                 2933 ns         2933 ns            5
+BM_DispatchVirtual_median                                      459 us          453 us            5 items_per_second=144.611M/s
+BM_DispatchVirtualBatched_median                               107 us          105 us            5 items_per_second=623.126M/s
+BM_DispatchStdFunction_median                                  562 us          556 us            5 items_per_second=117.874M/s
+BM_DispatchTemplate_median                                    85.3 us         85.1 us            5 items_per_second=770.025M/s
+BM_DispatchVariant_median                                     87.6 us         85.8 us            5 items_per_second=763.384M/s
+BM_DispatchAnyPayOff_median                                    147 us          146 us            5 items_per_second=449.39M/s
+BM_BridgeCopy_median                                          17.2 ns         17.1 ns            5
+BM_FactoryCreate_median                                       56.0 ns         55.2 ns            5
+BM_McPricerPimpl_median                                       4.98 ms         4.93 ms            5 items_per_second=20.2758M/s
+BM_MjArrayAxpy/64_median                                       191 ns          191 ns            5 items_per_second=335.722M/s
+BM_MjArrayAxpy/4096_median                                    5913 ns         5869 ns            5 items_per_second=697.853M/s
+BM_MjArrayAddScaled/64_median                                 38.5 ns         38.4 ns            5 items_per_second=1.66523G/s
+BM_MjArrayAddScaled/4096_median                               2383 ns         2369 ns            5 items_per_second=1.72928G/s
