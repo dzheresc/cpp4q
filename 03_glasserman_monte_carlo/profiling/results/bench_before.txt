@@ -1,0 +1,71 @@
+----------------------------------------------------------------------------------------------
+Benchmark                                    Time             CPU   Iterations UserCounters...
+----------------------------------------------------------------------------------------------
+BM_Mt19937Uniform_median                652805 ns       648429 ns            3 items_per_second=101.069M/s
+BM_Mrg32k3aUniform_median               505149 ns       495211 ns            3 items_per_second=132.339M/s
+BM_StdNormalDistribution_median        1409563 ns      1355119 ns            3 items_per_second=48.3618M/s
+BM_SamplerNormal/0_median              1755064 ns      1753665 ns            3 items_per_second=37.3709M/s inversion
+BM_SamplerNormal/1_median              1992451 ns      1933975 ns            3 items_per_second=33.8867M/s box-muller
+BM_SamplerNormal/2_median              1603429 ns      1552553 ns            3 items_per_second=42.2118M/s polar
+BM_SamplerFillNormal_median            1268593 ns      1203789 ns            3 items_per_second=54.4415M/s
+BM_InverseNormalCdf/0_median            555832 ns       544714 ns            3 items_per_second=120.311M/s BSM
+BM_InverseNormalCdf/1_median           2922812 ns      2915928 ns            3 items_per_second=22.4748M/s BSM+Halley
+BM_Gamma/5_median                       341232 ns       341068 ns            3 items_per_second=12.0093M/s
+BM_Gamma/25_median                      160693 ns       154893 ns            3 items_per_second=26.444M/s
+BM_Gamma/300_median                     198181 ns       196094 ns            3 items_per_second=20.8879M/s
+BM_Poisson/1_median                     122916 ns       120964 ns            3 items_per_second=33.8614M/s
+BM_Poisson/20_median                    282930 ns       277629 ns            3 items_per_second=14.7535M/s
+BM_Poisson/500_median                  4469072 ns      4460163 ns            3 items_per_second=918.352k/s
+BM_NoncentralChiSquare_median           481951 ns       472361 ns            3 items_per_second=8.67133M/s
+BM_SubstreamJump_median                    805 ns          781 ns            3
+BM_Ch01EuropeanCall_median                5.56 ms         5.55 ms            3 items_per_second=18.004M/s
+BM_ParallelCall/1/real_time_median         109 ms          107 ms            3 items_per_second=18.266M/s
+BM_ParallelCall/2/real_time_median        84.8 ms         82.8 ms            3 items_per_second=23.5786M/s
+BM_ParallelCall/4/real_time_median        78.6 ms         76.4 ms            3 items_per_second=25.444M/s
+BM_RandomWalk/16_median                   27.3 ns         26.8 ns            3 items_per_second=596.309M/s
+BM_RandomWalk/256_median                   394 ns          394 ns            3 items_per_second=650.284M/s
+BM_BrownianBridge/16_median               50.2 ns         49.6 ns            3 items_per_second=322.291M/s
+BM_BrownianBridge/256_median               562 ns          558 ns            3 items_per_second=458.909M/s
+BM_GbmPath_median                         2058 ns         2004 ns            3 items_per_second=31.9294M/s
+BM_MultiAssetTerminal/10_median            375 ns          359 ns            3
+BM_MultiAssetTerminal/50_median           2566 ns         2491 ns            3
+BM_VasicekBond_median                     8.44 ms         7.85 ms            3 items_per_second=25.4785M/s
+BM_CirBondExact_median                    32.3 ms         32.0 ms            3 items_per_second=6.25323M/s
+BM_MertonCall_median                      10.5 ms         10.3 ms            3 items_per_second=9.68323M/s
+BM_VrPlainCall_median                     10.0 ms         10.0 ms            3 items_per_second=19.945M/s std_error=0.0328037
+BM_VrAntitheticCall_median                6.56 ms         6.56 ms            3 items_per_second=30.5057M/s std_error=0.0232115
+BM_VrControlCall_median                   9.99 ms         9.98 ms            3 items_per_second=20.0456M/s std_error=0.0125594
+BM_VrStratifiedCall_median                6.94 ms         6.82 ms            3 items_per_second=29.333M/s std_error=1.90124m
+BM_VrImportanceOtmCall_median             13.0 ms         12.9 ms            3 items_per_second=15.5069M/s std_error=415.646u
+BM_VrPlainAsian_median                    83.1 ms         82.6 ms            3 items_per_second=2.42247M/s std_error=0.0190536
+BM_VrGeometricControlAsian_median         99.3 ms         97.9 ms            3 items_per_second=2.04385M/s std_error=527.915u
+BM_VrTerminalStratifiedAsian_median       87.7 ms         86.1 ms            3 items_per_second=2.32366M/s std_error=9.66689m
+BM_SobolNext/1_median                     3.75 ns         3.70 ns            3 items_per_second=270.227M/s
+BM_SobolNext/16_median                    22.5 ns         22.4 ns            3 items_per_second=713.215M/s
+BM_HaltonNext/1_median                    89.1 ns         89.0 ns            3 items_per_second=11.2349M/s
+BM_HaltonNext/16_median                    380 ns          375 ns            3 items_per_second=42.7223M/s
+BM_L2StarDiscrepancy/1024_median          3.55 ms         3.48 ms            3
+BM_QmcAsian/0_median                      24.7 ms         24.1 ms            3 items_per_second=2.72095M/s random walk
+BM_QmcAsian/1_median                      27.9 ms         27.1 ms            3 items_per_second=2.41931M/s bridge
+BM_McAsian_median                         35.6 ms         34.7 ms            3 items_per_second=1.88784M/s
+BM_StrongError/0_median                   19.2 ms         19.2 ms            3 items_per_second=33.4013M/s Euler
+BM_StrongError/1_median                   16.9 ms         16.7 ms            3 items_per_second=38.2703M/s Milstein
+BM_EulerCall/0_median                     13.2 ms         12.9 ms            3 items_per_second=49.7829M/s normal
+BM_EulerCall/1_median                     6.28 ms         6.26 ms            3 items_per_second=102.182M/s two-point
+BM_CirEulerFullTruncation_median          5.86 ms         5.73 ms            3 items_per_second=34.9069M/s
+BM_CallGreeks_median                      6.89 ms         6.89 ms            3 items_per_second=14.5234M/s
+BM_FiniteDifferenceDelta_median           6.59 ms         6.57 ms            3 items_per_second=15.217M/s
+BM_AsianDelta_median                      20.8 ms         20.4 ms            3 items_per_second=2.45021M/s
+BM_CrrAmerican/1000_median                9.80 ms         9.70 ms            3
+BM_CrrAmerican/4000_median                 175 ms          173 ms            3
+BM_LsmTrain/10_median                     28.0 ms         28.0 ms            3 items_per_second=17.8435M/s
+BM_LsmTrain/50_median                      227 ms          225 ms            3 items_per_second=11.1009M/s
+BM_LsmPrice_median                        94.0 ms         93.1 ms            3 items_per_second=26.8573M/s
+BM_RandomTree/20_median                   3.81 ms         3.78 ms            3 items_per_second=21.1444M/s
+BM_RandomTree/50_median                   56.4 ms         56.1 ms            3 items_per_second=22.2986M/s
+BM_SimulateLosses/0_median                21.1 ms         20.2 ms            3 items_per_second=2.47959M/s full revaluation
+BM_SimulateLosses/1_median                5.48 ms         5.34 ms            3 items_per_second=9.3699M/s delta-gamma
+BM_TailIsDeltaGamma_median                9.67 ms         9.59 ms            3 items_per_second=2.08592M/s std_error=17.0319u
+BM_CreditTailPlain_median                 22.2 ms         22.1 ms            3 items_per_second=451.612k/s
+BM_CreditTailIs_median                     272 ms          272 ms            3 items_per_second=36.7489k/s
+BM_CreditFindShift_median                 5.91 ms         5.84 ms            3

@@ -33,3 +33,4 @@ endif()
 
 add_subdirectory(01_hanson_modern_cpp_finance)
 add_subdirectory(02_williams_cpp_concurrency)
+add_subdirectory(03_glasserman_monte_carlo)
