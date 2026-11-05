@@ -7,6 +7,109 @@
 
 namespace cpp4q::armstrong::ch21 {
 
+namespace {
+
+// (I - theta dt L) restricted to the interior nodes 1..n-1, with its
+// elimination factors precomputed. Sub-diagonal a, diagonal b and
+// super-diagonal c (a(0) and c(m-1) are the boundary couplings).
+//
+// Elimination order: the usual Thomas order (low S to high S) leaves a
+// final substitution sweep from the highest node down; the reverse order
+// leaves one from the lowest node up (`sweep_upward`). Brennan-Schwartz
+// applies the early-exercise floor during that final sweep, which solves
+// the American problem exactly when the sweep starts inside the exercise
+// region: downward for calls (exercise at high S), upward for puts.
+class TridiagonalFactor {
+ public:
+  TridiagonalFactor(const std::vector<double>& lo,
+                    const std::vector<double>& mid,
+                    const std::vector<double>& up, double dt, double theta,
+                    bool sweep_upward)
+      : sweep_upward_(sweep_upward) {
+    const std::size_t m = lo.size() - 2;
+    a_.resize(m);
+    b_.resize(m);
+    c_.resize(m);
+    for (std::size_t k = 0; k < m; ++k) {
+      a_[k] = -theta * dt * lo[k + 1];
+      b_[k] = 1 - theta * dt * mid[k + 1];
+      c_[k] = -theta * dt * up[k + 1];
+    }
+    inv_denom_.resize(m);
+    ratio_.resize(m);
+    if (!sweep_upward_) {
+      inv_denom_[0] = 1 / b_[0];
+      ratio_[0] = c_[0] * inv_denom_[0];
+      for (std::size_t k = 1; k < m; ++k) {
+        inv_denom_[k] = 1 / (b_[k] - a_[k] * ratio_[k - 1]);
+        ratio_[k] = c_[k] * inv_denom_[k];
+      }
+    } else {
+      inv_denom_[m - 1] = 1 / b_[m - 1];
+      ratio_[m - 1] = a_[m - 1] * inv_denom_[m - 1];
+      for (std::size_t k = m - 1; k-- > 0;) {
+        inv_denom_[k] = 1 / (b_[k] - c_[k] * ratio_[k + 1]);
+        ratio_[k] = a_[k] * inv_denom_[k];
+      }
+    }
+  }
+
+  double a(std::size_t k) const { return a_[k]; }
+  double b(std::size_t k) const { return b_[k]; }
+  double c(std::size_t k) const { return c_[k]; }
+
+  // Solves in place.
+  void Solve(std::span<double> d) const {
+    Eliminate(d);
+    const std::size_t m = d.size();
+    if (!sweep_upward_) {
+      for (std::size_t k = m - 1; k-- > 0;) d[k] -= ratio_[k] * d[k + 1];
+    } else {
+      for (std::size_t k = 1; k < m; ++k) d[k] -= ratio_[k] * d[k - 1];
+    }
+  }
+
+  // Brennan-Schwartz: x = max(floor, back-substituted value), node by
+  // node in the final sweep. d is destroyed.
+  void SolveWithFloor(std::span<double> d, std::span<const double> floor,
+                      std::span<double> x) const {
+    Eliminate(d);
+    const std::size_t m = d.size();
+    if (!sweep_upward_) {
+      x[m - 1] = std::max(floor[m - 1], d[m - 1]);
+      for (std::size_t k = m - 1; k-- > 0;) {
+        x[k] = std::max(floor[k], d[k] - ratio_[k] * x[k + 1]);
+      }
+    } else {
+      x[0] = std::max(floor[0], d[0]);
+      for (std::size_t k = 1; k < m; ++k) {
+        x[k] = std::max(floor[k], d[k] - ratio_[k] * x[k - 1]);
+      }
+    }
+  }
+
+ private:
+  void Eliminate(std::span<double> d) const {
+    const std::size_t m = d.size();
+    if (!sweep_upward_) {
+      d[0] *= inv_denom_[0];
+      for (std::size_t k = 1; k < m; ++k) {
+        d[k] = (d[k] - a_[k] * d[k - 1]) * inv_denom_[k];
+      }
+    } else {
+      d[m - 1] *= inv_denom_[m - 1];
+      for (std::size_t k = m - 1; k-- > 0;) {
+        d[k] = (d[k] - c_[k] * d[k + 1]) * inv_denom_[k];
+      }
+    }
+  }
+
+  bool sweep_upward_;
+  std::vector<double> a_, b_, c_, inv_denom_, ratio_;
+};
+
+}  // namespace
+
 void SolveTridiagonal(std::span<const double> a, std::span<const double> b,
                       std::span<const double> c, std::span<double> d) {
   const std::size_t n = d.size();
@@ -72,6 +175,10 @@ PdeResult PricePde(PayoffType type, ExerciseStyle style, double strike,
   }
 
   // L V at node i = lo_i V_{i-1} + mid_i V_i + up_i V_{i+1}, S_i = i h.
+  // The coefficients do not depend on time, so the two implicit matrices
+  // (theta = 1 for the Rannacher steps, 1/2 after) are factorised once,
+  // and each time step is only a forward and a backward sweep.
+  const std::size_t interior = un - 1;
   std::vector<double> lo(un + 1), mid(un + 1), up(un + 1);
   for (std::size_t i = 1; i < un; ++i) {
     const double x = static_cast<double>(i);
@@ -81,12 +188,15 @@ PdeResult PricePde(PayoffType type, ExerciseStyle style, double strike,
     mid[i] = -2 * diff - rate;
     up[i] = diff + conv;
   }
+  const bool sweep_upward = american && !call;  // puts exercise at low S
+  const TridiagonalFactor implicit(lo, mid, up, dt, 1.0, sweep_upward);
+  const TridiagonalFactor crank_nicolson(lo, mid, up, dt, 0.5, sweep_upward);
 
-  const std::size_t interior = un - 1;
-  std::vector<double> a(interior), b(interior), c(interior), rhs(interior);
+  std::vector<double> rhs(interior);
   for (int step = 1; step <= m; ++step) {
     const double tau = step * dt;
-    const double theta = step <= settings.rannacher_steps ? 1.0 : 0.5;
+    const bool rannacher = step <= settings.rannacher_steps;
+    const TridiagonalFactor& f = rannacher ? implicit : crank_nicolson;
     // Boundary values at the new time level.
     double v0, vn;
     if (call) {
@@ -96,31 +206,33 @@ PdeResult PricePde(PayoffType type, ExerciseStyle style, double strike,
       v0 = american ? strike : strike * std::exp(-rate * tau);
       vn = 0.0;
     }
-    for (std::size_t i = 1; i < un; ++i) {
-      const std::size_t k = i - 1;
-      const double e = (1 - theta) * dt;
-      rhs[k] = v[i] + e * (lo[i] * v[i - 1] + mid[i] * v[i] + up[i] * v[i + 1]);
-      a[k] = -theta * dt * lo[i];
-      b[k] = 1 - theta * dt * mid[i];
-      c[k] = -theta * dt * up[i];
+    if (rannacher) {
+      for (std::size_t k = 0; k < interior; ++k) rhs[k] = v[k + 1];
+    } else {
+      const double e = 0.5 * dt;
+      for (std::size_t i = 1; i < un; ++i) {
+        rhs[i - 1] =
+            v[i] + e * (lo[i] * v[i - 1] + mid[i] * v[i] + up[i] * v[i + 1]);
+      }
     }
-    rhs[0] -= a[0] * v0;
-    rhs[interior - 1] -= c[interior - 1] * vn;
+    rhs[0] -= f.a(0) * v0;
+    rhs[interior - 1] -= f.c(interior - 1) * vn;
 
     if (!american) {
-      SolveTridiagonal(a, b, c, rhs);
-      for (std::size_t k = 0; k < interior; ++k) v[k + 1] = rhs[k];
+      f.Solve(rhs);
+      std::copy(rhs.begin(), rhs.end(), v.begin() + 1);
+    } else if (settings.american_solver == AmericanSolver::kBrennanSchwartz) {
+      f.SolveWithFloor(rhs, std::span<const double>(payoff).subspan(1, interior),
+                       std::span<double>(v).subspan(1, interior));
     } else {
       // Projected SOR from the previous time level's values.
-      v[0] = v0;
-      v[un] = vn;
       for (int iter = 0; iter < 10'000; ++iter) {
         double change = 0.0;
         for (std::size_t k = 0; k < interior; ++k) {
           const std::size_t i = k + 1;
-          const double left = k > 0 ? a[k] * v[i - 1] : 0.0;
-          const double right = k + 1 < interior ? c[k] * v[i + 1] : 0.0;
-          const double gs = (rhs[k] - left - right) / b[k];
+          const double left = k > 0 ? f.a(k) * v[i - 1] : 0.0;
+          const double right = k + 1 < interior ? f.c(k) * v[i + 1] : 0.0;
+          const double gs = (rhs[k] - left - right) / f.b(k);
           const double next =
               std::max(payoff[i], v[i] + settings.sor_omega * (gs - v[i]));
           change = std::max(change, std::abs(next - v[i]));

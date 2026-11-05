@@ -65,16 +65,20 @@ double Max(std::span<const double> v) {
 double Prctile(std::span<const double> v, double p) {
   RequireNonEmpty(v);
   if (!(p >= 0 && p <= 100)) throw std::invalid_argument("p not in [0, 100]");
-  std::vector<double> sorted(v.begin(), v.end());
-  std::ranges::sort(sorted);
-  const auto n = static_cast<double>(sorted.size());
-  // Position in sorted (0-based) whose percentile is p.
+  // Only the order statistics at floor(pos) and floor(pos) + 1 are
+  // needed, so select them in O(n) instead of sorting.
+  std::vector<double> w(v.begin(), v.end());
+  const auto n = static_cast<double>(w.size());
+  // Position in sorted order (0-based) whose percentile is p.
   const double pos = p / 100.0 * n - 0.5;
-  if (pos <= 0) return sorted.front();
-  if (pos >= n - 1) return sorted.back();
+  if (pos <= 0) return *std::ranges::min_element(w);
+  if (pos >= n - 1) return *std::ranges::max_element(w);
   const auto i = static_cast<std::size_t>(pos);
-  const double frac = pos - static_cast<double>(i);
-  return sorted[i] + frac * (sorted[i + 1] - sorted[i]);
+  const auto ith = w.begin() + static_cast<std::ptrdiff_t>(i);
+  std::nth_element(w.begin(), ith, w.end());
+  const double lo = *ith;
+  const double hi = *std::min_element(ith + 1, w.end());
+  return lo + (pos - static_cast<double>(i)) * (hi - lo);
 }
 
 std::vector<double> RandUniform(int n, Rng& rng) {

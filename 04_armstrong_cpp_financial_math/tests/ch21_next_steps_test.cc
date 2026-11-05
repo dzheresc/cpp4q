@@ -73,6 +73,22 @@ TEST(PdeTest, AmericanPutAgreesWithBinomialTree) {
   }
 }
 
+TEST(PdeTest, BrennanSchwartzMatchesProjectedSor) {
+  for (const auto type : {PayoffType::kPut, PayoffType::kCall}) {
+    for (double k : {85.0, 100.0, 120.0}) {
+      PdeSettings s{.n_space = 200, .n_time = 200};
+      const auto bs = PricePde(type, ExerciseStyle::kAmerican, k, 1, 100, 0.3,
+                               0.08, s);
+      s.american_solver = AmericanSolver::kProjectedSor;
+      s.sor_tolerance = 1e-13;
+      const auto sor = PricePde(type, ExerciseStyle::kAmerican, k, 1, 100, 0.3,
+                                0.08, s);
+      EXPECT_NEAR(bs.price, sor.price, 1e-9) << k;
+      EXPECT_NEAR(bs.delta, sor.delta, 1e-9) << k;
+    }
+  }
+}
+
 TEST(PdeTest, AmericanCallWithoutDividendsIsEuropean) {
   const double am = PricePde(PayoffType::kCall, ExerciseStyle::kAmerican, 100,
                              1, 100, 0.2, 0.05)

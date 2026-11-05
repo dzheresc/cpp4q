@@ -9,6 +9,7 @@
 #ifndef CPP4Q_ARMSTRONG_CH09_MONTE_CARLO_MONTE_CARLO_H_
 #define CPP4Q_ARMSTRONG_CH09_MONTE_CARLO_MONTE_CARLO_H_
 
+#include <random>
 #include <span>
 #include <vector>
 
@@ -28,10 +29,31 @@ std::vector<double> GeneratePricePath(const BlackScholesModel& model,
                                       double to_date, int n_steps,
                                       Measure measure, Rng& rng);
 
-// As above, writing into `path` (whose size is the number of steps) so
-// that a loop over scenarios can reuse one buffer.
+// As above, writing into `path` (whose size is the number of steps).
 void GeneratePricePath(const BlackScholesModel& model, double to_date,
                        Measure measure, Rng& rng, std::span<double> path);
+
+// The scenario-loop version: computes log S, the per-step drift and the
+// per-step volatility once, and keeps one normal distribution across
+// paths. (A fresh std::normal_distribution per path throws away the
+// second normal of every Marsaglia-polar pair, and the free functions
+// above also allocate.) Not thread-safe: one generator per thread.
+class PathGenerator {
+ public:
+  // Throws unless n_steps >= 1 and to_date > model.date.
+  PathGenerator(const BlackScholesModel& model, double to_date, int n_steps,
+                Measure measure);
+  int n_steps() const { return n_steps_; }
+  // Fills `path` (size n_steps) with S(t_1), ..., S(t_n).
+  void Generate(Rng& rng, std::span<double> path);
+
+ private:
+  double log_s0_;
+  double step_drift_;
+  double step_sd_;
+  int n_steps_;
+  std::normal_distribution<double> normal_;
+};
 
 struct Estimate {
   double price = 0.0;

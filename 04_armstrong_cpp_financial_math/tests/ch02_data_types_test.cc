@@ -38,8 +38,16 @@ TEST(FloorDivTest, SignsAndZero) {
 TEST(EpsilonTest, MatchesNumericLimits) {
   EXPECT_EQ(MachineEpsilon<float>(), std::numeric_limits<float>::epsilon());
   EXPECT_EQ(MachineEpsilon<double>(), std::numeric_limits<double>::epsilon());
+  // MachineEpsilon measures the arithmetic actually executed. Valgrind
+  // runs x87 long double at double precision, so there it finds the
+  // double epsilon; check against what this machine really does.
+  volatile long double one_plus = 1.0L;
+  one_plus += std::numeric_limits<long double>::epsilon();
+  const bool full_precision = one_plus != 1.0L;
   EXPECT_EQ(MachineEpsilon<long double>(),
-            std::numeric_limits<long double>::epsilon());
+            full_precision ? std::numeric_limits<long double>::epsilon()
+                           : static_cast<long double>(
+                                 std::numeric_limits<double>::epsilon()));
 }
 
 TEST(SumTest, CompensatedBeatsNaive) {

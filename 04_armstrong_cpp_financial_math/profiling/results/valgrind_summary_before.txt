@@ -1,0 +1,82 @@
+== memcheck
+  FAIL  armstrong_appendix_a_risk_neutral_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_appendix_a_risk_neutral_test.log)
+  FAIL  armstrong_ch01_getting_started_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch01_getting_started_test.log)
+  FAIL  armstrong_ch02_data_types_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch02_data_types_test.log)
+  FAIL  armstrong_ch03_functions_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch03_functions_test.log)
+  FAIL  armstrong_ch04_flow_of_control_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch04_flow_of_control_test.log)
+  FAIL  armstrong_ch05_multiple_files_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch05_multiple_files_test.log)
+  FAIL  armstrong_ch06_unit_testing_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch06_unit_testing_test.log)
+  FAIL  armstrong_ch07_using_classes_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch07_using_classes_test.log)
+  FAIL  armstrong_ch08_user_defined_types_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch08_user_defined_types_test.log)
+  FAIL  armstrong_ch09_monte_carlo_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch09_monte_carlo_test.log)
+  FAIL  armstrong_ch10_interfaces_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch10_interfaces_test.log)
+  FAIL  armstrong_ch11_arrays_strings_pointers_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch11_arrays_strings_pointers_test.log)
+  FAIL  armstrong_ch12_sophisticated_classes_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch12_sophisticated_classes_test.log)
+  FAIL  armstrong_ch13_portfolio_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch13_portfolio_test.log)
+  FAIL  armstrong_ch14_delta_hedging_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch14_delta_hedging_test.log)
+  FAIL  armstrong_ch15_debugging_tools_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch15_debugging_tools_test.log)
+  FAIL  armstrong_ch16_matrix_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch16_matrix_test.log)
+  FAIL  armstrong_ch17_templates_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch17_templates_test.log)
+  FAIL  armstrong_ch18_stl_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch18_stl_test.log)
+  FAIL  armstrong_ch19_function_objects_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch19_function_objects_test.log)
+  FAIL  armstrong_ch20_threads_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch20_threads_test.log)
+  FAIL  armstrong_ch21_next_steps_test (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch21_next_steps_test.log)
+  FAIL  armstrong_appendix_a_risk_neutral_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_appendix_a_risk_neutral_demo.log)
+  FAIL  armstrong_ch01_getting_started_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch01_getting_started_demo.log)
+  FAIL  armstrong_ch02_data_types_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch02_data_types_demo.log)
+  FAIL  armstrong_ch03_functions_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch03_functions_demo.log)
+  FAIL  armstrong_ch04_flow_of_control_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch04_flow_of_control_demo.log)
+  FAIL  armstrong_ch05_multiple_files_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch05_multiple_files_demo.log)
+  FAIL  armstrong_ch06_unit_testing_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch06_unit_testing_demo.log)
+  FAIL  armstrong_ch07_using_classes_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch07_using_classes_demo.log)
+  FAIL  armstrong_ch08_user_defined_types_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch08_user_defined_types_demo.log)
+  FAIL  armstrong_ch09_monte_carlo_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch09_monte_carlo_demo.log)
+  FAIL  armstrong_ch10_interfaces_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch10_interfaces_demo.log)
+  FAIL  armstrong_ch11_arrays_strings_pointers_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch11_arrays_strings_pointers_demo.log)
+  FAIL  armstrong_ch12_sophisticated_classes_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch12_sophisticated_classes_demo.log)
+  FAIL  armstrong_ch13_portfolio_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch13_portfolio_demo.log)
+  FAIL  armstrong_ch14_delta_hedging_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch14_delta_hedging_demo.log)
+  FAIL  armstrong_ch15_debugging_tools_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch15_debugging_tools_demo.log)
+  FAIL  armstrong_ch16_matrix_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch16_matrix_demo.log)
+  FAIL  armstrong_ch17_templates_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch17_templates_demo.log)
+  FAIL  armstrong_ch18_stl_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch18_stl_demo.log)
+  FAIL  armstrong_ch19_function_objects_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch19_function_objects_demo.log)
+  FAIL  armstrong_ch20_threads_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch20_threads_demo.log)
+  FAIL  armstrong_ch21_next_steps_demo (see /home/claude/cpp4q/04_armstrong_cpp_financial_math/profiling/results/valgrind/memcheck.armstrong_ch21_next_steps_demo.log)
+== helgrind
+  parallel    0 errors
+== drd
+  parallel    0 errors
+== callgrind
+  normals                82342276 Ir
+  mc09                   90012528 Ir
+  asian                 114637969 Ir
+  barrier               116466258 Ir
+  hedging                45560962 Ir
+  portfolio              23777388 Ir
+  matmul                 64261095 Ir
+  linalg                 23822233 Ir
+  basket                 71721089 Ir
+  callables              66082105 Ir
+  impliedvol              8946828 Ir
+  parallel              240238558 Ir
+  var                   122275219 Ir
+  pde_eu                 11571899 Ir
+  pde_am                 14038486 Ir
+  crr                    87801133 Ir
+== cachegrind
+  matmul: ==7599== D1  miss rate:        5.9% (       5.8%     +     9.4%  )
+  matmul: ==7599== LL miss rate:         0.0% (       0.0%     +     2.3%  )
+  linalg: ==7602== D1  miss rate:        4.9% (      5.3%     +       2.8%  )
+  linalg: ==7602== LL miss rate:         0.1% (      0.0%     +       0.9%  )
+  pde_eu: ==7605== D1  miss rate:        0.7% (      1.1%     +       0.3%  )
+  pde_eu: ==7605== LL miss rate:         0.1% (      0.1%     +       0.1%  )
+  asian: ==7608== D1  miss rate:         0.1% (       0.1%     +       0.0%  )
+  asian: ==7608== LL miss rate:          0.0% (       0.0%     +       0.0%  )
+== massif
+  mc09       peak heap: 77824 bytes
+  asian      peak heap: 77824 bytes
+  hedging    peak heap: 83328 bytes
+  var        peak heap: 3273728 bytes
+  pde_am     peak heap: 88136 bytes
+rc=1

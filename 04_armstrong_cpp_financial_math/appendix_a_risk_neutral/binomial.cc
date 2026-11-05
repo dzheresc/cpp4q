@@ -50,21 +50,28 @@ double CrrPrice(PayoffType type, ExerciseStyle style, double strike,
     return call ? std::max(s - strike, 0.0) : std::max(strike - s, 0.0);
   };
   const auto n = static_cast<std::size_t>(steps);
+  // Discount folded into the branch probabilities.
+  const double p_up = df * q;
+  const double p_down = df * (1 - q);
   std::vector<double> v(n + 1);
+  // s[j] = spot u^(2j - level) at the current level. Stepping back one
+  // level multiplies each node by u, so the tree needs no pow() calls
+  // after the terminal layer.
+  std::vector<double> s(n + 1);
   for (std::size_t j = 0; j <= n; ++j) {
-    const double s = spot * std::pow(u, 2.0 * static_cast<double>(j) - steps);
-    v[j] = intrinsic(s);
+    s[j] = spot * std::pow(u, 2.0 * static_cast<double>(j) - steps);
+    v[j] = intrinsic(s[j]);
   }
+  const bool american = style == ExerciseStyle::kAmerican;
   for (std::size_t level = n; level-- > 0;) {
     for (std::size_t j = 0; j <= level; ++j) {
-      double value = df * (q * v[j + 1] + (1 - q) * v[j]);
-      if (style == ExerciseStyle::kAmerican) {
-        const double s =
-            spot * std::pow(u, 2.0 * static_cast<double>(j) -
-                                   static_cast<double>(level));
-        value = std::max(value, intrinsic(s));
+      const double cont = p_up * v[j + 1] + p_down * v[j];
+      if (american) {
+        s[j] *= u;
+        v[j] = std::max(cont, intrinsic(s[j]));
+      } else {
+        v[j] = cont;
       }
-      v[j] = value;
     }
   }
   return v[0];

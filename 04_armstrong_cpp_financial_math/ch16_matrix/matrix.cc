@@ -116,12 +116,17 @@ Matrix operator*(const Matrix& a, const Matrix& b) {
   if (a.cols() != b.rows()) {
     throw std::invalid_argument("inner dimensions differ");
   }
+  // j-k-i order: the inner loop runs down one column of a and of c, both
+  // contiguous in column-major storage (and so vectorisable). The
+  // textbook i-j-k order walks a row of a with a stride of a.rows().
   Matrix c(a.rows(), b.cols());
-  for (std::size_t i = 0; i < a.rows(); ++i) {
-    for (std::size_t j = 0; j < b.cols(); ++j) {
-      double sum = 0.0;
-      for (std::size_t k = 0; k < a.cols(); ++k) sum += a(i, k) * b(k, j);
-      c(i, j) = sum;
+  const std::size_t m = a.rows();
+  for (std::size_t j = 0; j < b.cols(); ++j) {
+    double* c_col = c.data() + j * m;
+    for (std::size_t k = 0; k < a.cols(); ++k) {
+      const double b_kj = b(k, j);
+      const double* a_col = a.data() + k * m;
+      for (std::size_t i = 0; i < m; ++i) c_col[i] += a_col[i] * b_kj;
     }
   }
   return c;
@@ -161,23 +166,30 @@ Matrix Cholesky(const Matrix& a) {
     scale = std::max(scale, std::abs(a.data()[k]));
   }
   const double sym_tol = 1e-12 * std::max(scale, 1.0);
-  Matrix l(n, n);
   for (std::size_t j = 0; j < n; ++j) {
     for (std::size_t i = j + 1; i < n; ++i) {
       if (std::abs(a(i, j) - a(j, i)) > sym_tol) {
         throw std::domain_error("Cholesky needs a symmetric matrix");
       }
     }
-    double d = a(j, j);
-    for (std::size_t k = 0; k < j; ++k) d -= l(j, k) * l(j, k);
+  }
+  // Left-looking, column by column: column j of L is column j of a minus
+  // L(j, k) times column k of L for each earlier k. Every inner loop runs
+  // down a contiguous column (the row-oriented form strides by n).
+  Matrix l(n, n);
+  for (std::size_t j = 0; j < n; ++j) {
+    double* col_j = l.data() + j * n;
+    for (std::size_t i = j; i < n; ++i) col_j[i] = a(i, j);
+    for (std::size_t k = 0; k < j; ++k) {
+      const double* col_k = l.data() + k * n;
+      const double ljk = col_k[j];
+      for (std::size_t i = j; i < n; ++i) col_j[i] -= col_k[i] * ljk;
+    }
+    const double d = col_j[j];
     if (!(d > 0)) throw std::domain_error("matrix is not positive definite");
     const double ljj = std::sqrt(d);
-    l(j, j) = ljj;
-    for (std::size_t i = j + 1; i < n; ++i) {
-      double s = a(i, j);
-      for (std::size_t k = 0; k < j; ++k) s -= l(i, k) * l(j, k);
-      l(i, j) = s / ljj;
-    }
+    col_j[j] = ljj;
+    for (std::size_t i = j + 1; i < n; ++i) col_j[i] /= ljj;
   }
   return l;
 }
@@ -207,17 +219,27 @@ std::vector<double> Solve(const Matrix& a, std::span<const double> b) {
       for (std::size_t j = 0; j < n; ++j) std::swap(lu(k, j), lu(pivot, j));
       std::swap(x[k], x[pivot]);
     }
-    for (std::size_t i = k + 1; i < n; ++i) {
-      const double f = lu(i, k) / lu(k, k);
-      lu(i, k) = f;
-      for (std::size_t j = k + 1; j < n; ++j) lu(i, j) -= f * lu(k, j);
-      x[i] -= f * x[k];
+    // Column-oriented elimination (right-looking): scale column k below
+    // the pivot, then subtract multiples of it from each later column.
+    // Every inner loop is contiguous in column-major storage.
+    double* col_k = lu.data() + k * n;
+    const double inv_pivot = 1.0 / col_k[k];
+    for (std::size_t i = k + 1; i < n; ++i) col_k[i] *= inv_pivot;
+    for (std::size_t j = k + 1; j < n; ++j) {
+      double* col_j = lu.data() + j * n;
+      const double f = col_j[k];
+      if (f == 0.0) continue;
+      for (std::size_t i = k + 1; i < n; ++i) col_j[i] -= col_k[i] * f;
     }
+    const double xk = x[k];
+    for (std::size_t i = k + 1; i < n; ++i) x[i] -= col_k[i] * xk;
   }
+  // Back substitution, also by columns.
   for (std::size_t k = n; k-- > 0;) {
-    double s = x[k];
-    for (std::size_t j = k + 1; j < n; ++j) s -= lu(k, j) * x[j];
-    x[k] = s / lu(k, k);
+    const double* col_k = lu.data() + k * n;
+    x[k] /= col_k[k];
+    const double xk = x[k];
+    for (std::size_t i = 0; i < k; ++i) x[i] -= col_k[i] * xk;
   }
   return x;
 }

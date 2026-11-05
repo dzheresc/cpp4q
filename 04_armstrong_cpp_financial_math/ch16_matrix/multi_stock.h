@@ -9,6 +9,7 @@
 #ifndef CPP4Q_ARMSTRONG_CH16_MATRIX_MULTI_STOCK_H_
 #define CPP4Q_ARMSTRONG_CH16_MATRIX_MULTI_STOCK_H_
 
+#include <random>
 #include <span>
 #include <vector>
 
@@ -35,6 +36,13 @@ class MultiStockModel {
 
   // Risk-neutral S_i(T) for every stock, written into `out`.
   void SimulateTerminal(double maturity, Rng& rng,
+                        std::span<double> out) const;
+  // The scenario-loop version: `normal` persists across calls and
+  // `scratch` (size n_stocks) holds the independent normals, so nothing
+  // is allocated per scenario.
+  void SimulateTerminal(double maturity, Rng& rng,
+                        std::normal_distribution<double>& normal,
+                        std::span<double> scratch,
                         std::span<double> out) const;
 
  private:

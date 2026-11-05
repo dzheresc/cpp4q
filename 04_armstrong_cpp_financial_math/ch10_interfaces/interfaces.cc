@@ -93,11 +93,13 @@ Estimate MonteCarloPricer::Price(const ContinuousTimeOption& option,
   if (n_scenarios_ < 2) throw std::invalid_argument("need >= 2 scenarios");
   if (n_steps_ < 1) throw std::invalid_argument("need >= 1 step");
   const int steps = option.IsPathDependent() ? n_steps_ : 1;
+  ch09::PathGenerator generator(model, option.maturity(), steps,
+                                ch09::Measure::kRiskNeutral);
+  std::vector<double> path(static_cast<std::size_t>(steps));
   double sum = 0.0;
   double sum_sq = 0.0;
   for (int i = 0; i < n_scenarios_; ++i) {
-    const std::vector<double> path = ch09::GeneratePricePath(
-        model, option.maturity(), steps, ch09::Measure::kRiskNeutral, rng);
+    generator.Generate(rng, path);
     const double payoff = option.Payoff(path);
     sum += payoff;
     sum_sq += payoff * payoff;

@@ -62,10 +62,12 @@ Stats SimulateBlock(const ContinuousTimeOption& option,
                     static_cast<std::uint32_t>(block)};
   ch09::Rng rng(seq);
   const int steps = option.IsPathDependent() ? s.n_steps : 1;
+  ch09::PathGenerator generator(model, option.maturity(), steps,
+                                ch09::Measure::kRiskNeutral);
+  std::vector<double> path(static_cast<std::size_t>(steps));
   Stats stats;
   for (int i = BlockSize(s, block); i > 0; --i) {
-    const std::vector<double> path = ch09::GeneratePricePath(
-        model, option.maturity(), steps, ch09::Measure::kRiskNeutral, rng);
+    generator.Generate(rng, path);
     stats.Add(option.Payoff(path));
   }
   return stats;

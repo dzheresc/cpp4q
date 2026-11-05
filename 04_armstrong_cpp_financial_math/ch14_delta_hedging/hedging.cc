@@ -22,12 +22,18 @@ HedgingSimulator::HedgingSimulator(const BlackScholesModel& simulation_model,
 }
 
 double HedgingSimulator::RunSimulation(Rng& rng) const {
+  ch09::PathGenerator generator(simulation_model_, option_.maturity(),
+                                n_steps_, ch09::Measure::kRealWorld);
+  std::vector<double> path(static_cast<std::size_t>(n_steps_));
+  return Simulate(generator, path, rng);
+}
+
+double HedgingSimulator::Simulate(ch09::PathGenerator& generator,
+                                  std::span<double> path, Rng& rng) const {
   const double t0 = simulation_model_.date;
   const double dt = (option_.maturity() - t0) / n_steps_;
   const double growth = std::exp(pricing_model_.risk_free_rate * dt);
-  const std::vector<double> path = ch09::GeneratePricePath(
-      simulation_model_, option_.maturity(), n_steps_,
-      ch09::Measure::kRealWorld, rng);
+  generator.Generate(rng, path);
 
   BlackScholesModel belief = pricing_model_;
   double delta = option_.Delta(belief);
@@ -48,8 +54,11 @@ double HedgingSimulator::RunSimulation(Rng& rng) const {
 std::vector<double> HedgingSimulator::RunSimulations(int n_scenarios,
                                                      Rng& rng) const {
   if (n_scenarios < 0) throw std::invalid_argument("n_scenarios < 0");
+  ch09::PathGenerator generator(simulation_model_, option_.maturity(),
+                                n_steps_, ch09::Measure::kRealWorld);
+  std::vector<double> path(static_cast<std::size_t>(n_steps_));
   std::vector<double> pnl(static_cast<std::size_t>(n_scenarios));
-  for (double& x : pnl) x = RunSimulation(rng);
+  for (double& x : pnl) x = Simulate(generator, path, rng);
   return pnl;
 }
 

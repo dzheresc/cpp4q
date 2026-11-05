@@ -9,3 +9,5 @@ massif.out.*
 02_williams_cpp_concurrency/profiling/results/tsan/
 03_glasserman_monte_carlo/profiling/results/valgrind/
 03_glasserman_monte_carlo/profiling/results/sanitizers/
+04_armstrong_cpp_financial_math/profiling/results/valgrind/
+04_armstrong_cpp_financial_math/profiling/results/sanitizers/

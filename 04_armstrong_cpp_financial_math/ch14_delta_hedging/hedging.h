@@ -11,6 +11,7 @@
 #ifndef CPP4Q_ARMSTRONG_CH14_DELTA_HEDGING_HEDGING_H_
 #define CPP4Q_ARMSTRONG_CH14_DELTA_HEDGING_HEDGING_H_
 
+#include <span>
 #include <vector>
 
 #include "ch10_interfaces/interfaces.h"
@@ -36,6 +37,9 @@ class HedgingSimulator {
   std::vector<double> RunSimulations(int n_scenarios, Rng& rng) const;
 
  private:
+  double Simulate(ch09::PathGenerator& generator, std::span<double> path,
+                  Rng& rng) const;
+
   BlackScholesModel simulation_model_;
   BlackScholesModel pricing_model_;
   EuropeanCall option_;
