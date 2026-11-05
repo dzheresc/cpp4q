@@ -1,0 +1,53 @@
+== memcheck
+  ok    glasserman_ch01_foundations_test
+  ok    glasserman_ch02_random_numbers_test
+  ok    glasserman_ch03_sample_paths_test
+  ok    glasserman_ch04_variance_reduction_test
+  ok    glasserman_ch05_quasi_monte_carlo_test
+  ok    glasserman_ch06_discretization_test
+  ok    glasserman_ch07_sensitivities_test
+  ok    glasserman_ch08_american_options_test
+  ok    glasserman_ch09_risk_management_test
+  ok    glasserman_ch01_foundations_demo
+  ok    glasserman_ch02_random_numbers_demo
+  ok    glasserman_ch03_sample_paths_demo
+  ok    glasserman_ch04_variance_reduction_demo
+  ok    glasserman_ch05_quasi_monte_carlo_demo
+  ok    glasserman_ch06_discretization_demo
+  ok    glasserman_ch07_sensitivities_demo
+  ok    glasserman_ch08_american_options_demo
+  ok    glasserman_ch09_risk_management_demo
+== helgrind
+  parallel    0 errors
+== drd
+  parallel    0 errors
+== callgrind
+  uniforms               62033387 Ir
+  normals                91554549 Ir
+  variates               65100223 Ir
+  parallel               44370422 Ir
+  bridge                181795367 Ir
+  shortrate             235128404 Ir
+  vr                    235398523 Ir
+  qmc                   105777595 Ir
+  discrepancy            12613045 Ir
+  discretization         76545035 Ir
+  greeks                 76705857 Ir
+  lsm                   685087748 Ir
+  tree                   13333260 Ir
+  var                    72881624 Ir
+  credit                621911775 Ir
+== cachegrind
+  lsm: ==7466== D1  miss rate:         1.3% (        1.4%     +        0.9%  )
+  lsm: ==7466== LL miss rate:          0.0% (        0.0%     +        0.4%  )
+  vr: ==7469== D1  miss rate:         0.0% (       0.0%     +        0.0%  )
+  vr: ==7469== LL miss rate:          0.0% (       0.0%     +        0.0%  )
+  qmc: ==7472== D1  miss rate:         0.0% (       0.0%     +       0.0%  )
+  qmc: ==7472== LL miss rate:          0.0% (       0.0%     +       0.0%  )
+  discrepancy: ==7475== D1  miss rate:        0.6% (      0.5%     +     1.3%  )
+  discrepancy: ==7475== LL miss rate:         0.1% (      0.1%     +     0.9%  )
+== massif
+  lsm        peak heap: 8236672 bytes
+  tree       peak heap: 77824 bytes
+  var        peak heap: 394120 bytes
+  qmc        peak heap: 77824 bytes
