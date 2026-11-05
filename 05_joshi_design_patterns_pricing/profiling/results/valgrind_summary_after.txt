@@ -1,0 +1,69 @@
+== memcheck
+  ok    joshi_appendix_a_black_scholes_test
+  ok    joshi_appendix_b_distributions_test
+  ok    joshi_appendix_c_array_test
+  ok    joshi_ch01_simple_monte_carlo_test
+  ok    joshi_ch02_encapsulation_test
+  ok    joshi_ch03_inheritance_test
+  ok    joshi_ch04_virtual_constructor_test
+  ok    joshi_ch05_strategies_statistics_test
+  ok    joshi_ch06_random_numbers_test
+  ok    joshi_ch07_exotics_engine_test
+  ok    joshi_ch08_trees_test
+  ok    joshi_ch09_solvers_implied_vol_test
+  ok    joshi_ch10_factory_test
+  ok    joshi_ch11_patterns_revisited_test
+  ok    joshi_ch12_situation_2007_test
+  ok    joshi_ch13_exceptions_test
+  ok    joshi_ch14_template_factory_test
+  ok    joshi_ch15_excel_interface_test
+  ok    joshi_ch16_decoupling_test
+  ok    joshi_appendix_a_black_scholes_demo
+  ok    joshi_appendix_b_distributions_demo
+  ok    joshi_appendix_c_array_demo
+  ok    joshi_ch01_simple_monte_carlo_demo
+  ok    joshi_ch02_encapsulation_demo
+  ok    joshi_ch03_inheritance_demo
+  ok    joshi_ch04_virtual_constructor_demo
+  ok    joshi_ch05_strategies_statistics_demo
+  ok    joshi_ch06_random_numbers_demo
+  ok    joshi_ch07_exotics_engine_demo
+  ok    joshi_ch08_trees_demo
+  ok    joshi_ch09_solvers_implied_vol_demo
+  ok    joshi_ch10_factory_demo
+  ok    joshi_ch11_patterns_revisited_demo
+  ok    joshi_ch12_situation_2007_demo
+  ok    joshi_ch13_exceptions_demo
+  ok    joshi_ch14_template_factory_demo
+  ok    joshi_ch15_excel_interface_demo
+  ok    joshi_ch16_decoupling_demo
+== helgrind
+  factory_threads  0 errors
+== drd
+  factory_threads  0 errors
+== callgrind
+  mc5                    65836069 Ir
+  mc6                    43256796 Ir
+  asian                  89809226 Ir
+  knockout               91247675 Ir
+  tree                   23736234 Ir
+  impliedvol             10262101 Ir
+  dispatch               28080262 Ir
+  factory                13024485 Ir
+  pimpl                  23270569 Ir
+  array                  89008949 Ir
+== cachegrind
+  tree: ==9078== D1  miss rate:        0.3% (      0.4%     +       0.2%  )
+  tree: ==9078== LL miss rate:         0.0% (      0.0%     +       0.1%  )
+  asian: ==9081== D1  miss rate:        0.1% (       0.1%     +       0.0%  )
+  asian: ==9081== LL miss rate:         0.0% (       0.0%     +       0.0%  )
+  dispatch: ==9084== D1  miss rate:        1.0% (      1.0%     +       1.0%  )
+  dispatch: ==9084== LL miss rate:         0.1% (      0.0%     +       0.5%  )
+  array: ==9087== D1  miss rate:        0.0% (       0.1%     +        0.0%  )
+  array: ==9087== LL miss rate:         0.0% (       0.0%     +        0.0%  )
+== massif
+  mc5        peak heap: 79181 bytes
+  asian      peak heap: 78733 bytes
+  tree       peak heap: 122733 bytes
+  factory    peak heap: 78733 bytes
+  pimpl      peak heap: 78733 bytes
