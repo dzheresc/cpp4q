@@ -1,0 +1,7 @@
+build*/
+.cache/
+compile_commands.json
+callgrind.out.*
+cachegrind.out.*
+massif.out.*
+01_hanson_modern_cpp_finance/profiling/results/valgrind/

@@ -1,6 +1,20 @@
 # cpp4q
 
-C++ for quantitative finance: reading list with chapter-level tables of contents.
+C++ for quantitative finance: a reading list with chapter-level tables of contents, and C++20 code that works through each book in order.
+
+## Code
+
+Each book has its own top-level folder, and they all build from the root `CMakeLists.txt`:
+
+| Folder | Book | Status |
+| --- | --- | --- |
+| [`01_hanson_modern_cpp_finance/`](01_hanson_modern_cpp_finance/) | Hanson, *Learning Modern C++ for Finance* | all 10 chapters + appendices, tests, benchmarks, [profiling report](01_hanson_modern_cpp_finance/profiling/REPORT.md) |
+
+```sh
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && cmake --build build && ctest --test-dir build
+```
+
+Requirements: a C++20 compiler (GCC 13+ or Clang 17+), CMake 3.25+, optionally Boost headers and valgrind. GoogleTest and Google Benchmark are fetched automatically when they are not installed.
 
 Books are the five recommended in [Best C++ Quantitative Finance Books](https://cppforquants.com/best-c-quantitative-finance-books/) (cppforquants.com).
 
